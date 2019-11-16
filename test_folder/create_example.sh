@@ -18,8 +18,8 @@ for my_folder in "${folder_names[@]}"; do
         #truncate -s "$(( ( RANDOM % 500 )  + 50 ))K" "$(mktemp -p "$my_folder" XXXX.jpg)"
         temp_name="$(mktemp -p "$my_folder" XXXX.jpg)"
         dd if=/dev/urandom count="$(( ( RANDOM % 500 )  + 50 ))" of="$temp_name"
-        if [ $(( RANDOM % 100 )) -lt 10 ]; then
-            cp "temp_name" "$(mktemp -p "$my_folder" XXXX.jpg)"
+        if [ $(( RANDOM % 100 )) -lt 20 ]; then
+            cp "$temp_name" "$(mktemp -p "$my_folder" XXXX.jpg)"
             true
         fi
         count=$(( $count -1 ))
