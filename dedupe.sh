@@ -15,7 +15,7 @@
 
 
 #make a hiddenfolder if it doesnt exist
-cd $arg_f
+cd "$arg_d"
 info "$(pwd)"
 
 
