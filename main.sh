@@ -330,13 +330,7 @@ __b3bp_err_report() {
 ### Command-line argument switches (like -d for debugmode, -h for showing helppage)
 ##############################################################################
 
-# debug mode
-if [[ "${arg_d:?}" = "1" ]]; then
-  set -o xtrace
-  LOG_LEVEL="7"
-  # Enable error backtracing
-  trap '__b3bp_err_report "${FUNCNAME:-.}" ${LINENO}' ERR
-fi
+
 
 # verbose mode
 if [[ "${arg_v:?}" = "1" ]]; then
@@ -358,7 +352,7 @@ fi
 ### Validation. Error out if the things required for your script are not present
 ##############################################################################
 
-[[ "${arg_f:-}" ]]     || help      "Setting a filename with -f or --file is required"
+[[ "${arg_d:-}" ]]     || help      "Setting a filename with -dir or --directory is required"
 [[ "${LOG_LEVEL:-}" ]] || emergency "Cannot continue without LOG_LEVEL. "
 
 
@@ -371,7 +365,6 @@ info "__dir: ${__dir}"
 info "__base: ${__base}"
 info "OSTYPE: ${OSTYPE}"
 
-info "arg_f: ${arg_f}"
 info "arg_d: ${arg_d}"
 info "arg_v: ${arg_v}"
 info "arg_h: ${arg_h}"
